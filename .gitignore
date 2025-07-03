@@ -1,0 +1,5 @@
+# Project exclude paths
+/auth-service/target/
+/gateway-service/target/
+/report-service/target/
+/research-service/target/

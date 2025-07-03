@@ -1,0 +1,1 @@
+java -jar research-service\target\research-service-1.0.0.jar

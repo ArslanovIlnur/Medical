@@ -1,0 +1,20 @@
+p{
+    text-align:center;
+}
+table{
+    font-family:'Times New Roman',Times,serif;
+    width:620px;
+    border:2px solid black;
+    font-size:14px;
+    border-collapse:collapse;
+}
+th{
+    font-weight:bold;
+    border:2px solid black;
+}
+td{
+    border:1px solid black;
+}
+.total{
+    font-weight:bold;border:2px solid black;
+}

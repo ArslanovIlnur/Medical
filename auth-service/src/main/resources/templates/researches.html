@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Web Page</title>
+    <link rel="stylesheet" th:href="@{/css/researches.css}">
+</head>
+<body>
+    <h1>Исследования</h1>
+    <div>
+        <input id="date" type="date">
+        <input placeholder="ID" id="patId" type="number">
+        <input placeholder="Ф.И.О." id="initials" type="text">
+        <select id="resType">
+            <option>МРТ</option>
+            <option>КТ</option>
+        </select>
+        <input placeholder="Зона обследования" id="resZone">
+        <button id="addBtn">Добавить</button>
+    </div>
+    <input id="patSearchId" placeholder="ID пациента" type="number">
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>ID пациента</th>
+                    <th>Ф.И.О.</th>
+                    <th>Исследование</th>
+                    <th>Зона</th>
+                </tr>
+            </thead>
+            <tbody id="patTblBody"></tbody>
+        </table>
+    </div>
+    <script th:src="@{/js/researches.js}"></script>
+</body>
+</html>

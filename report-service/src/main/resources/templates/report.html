@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/report.css}"/>
+</head>
+<body>
+    <a th:href="@{|/download?file=| + ${pdfFileName}}">Скачать PDF</a>
+    <table>
+        <tr>
+            <td colspan="2">
+                <p th:text="|Отчет о количестве исследований | + ${resType} "/>
+                <p th:text="|с | + ${startDate} + |г. по | + ${endDate} + |г.|"/>
+            </td>
+        </tr>
+        <tr>
+            <th>Зона</th>
+            <th>Количество</th>
+        </tr>
+        <tr th:each="map: ${dataMap}">
+            <td th:text="${map.getKey()}"/>
+            <td th:text="${map.getValue()}"/>
+        </tr>
+        <tr>
+            <td class="total">Итого: </td>
+            <td class="total" th:text="${sum}"></td>
+        </tr>
+    </table>
+</body>
+</html>

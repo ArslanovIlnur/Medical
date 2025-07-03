@@ -1,0 +1,15 @@
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 60%;
+  box-shadow: 8px 8px 8px #a9a9a9;
+}
+th {
+  border: 1px solid black;
+  background: #d3d3d3;
+  font-size: 20px;
+}
+td {
+  border: 1px solid black;
+  font-size: 20px;
+}

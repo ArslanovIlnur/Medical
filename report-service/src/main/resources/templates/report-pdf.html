@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>PDF Report</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+            margin: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid black;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 6px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        .total {
+            font-weight: bold;
+        }
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td colspan="2">
+            <p th:text="'Отчет о количестве исследований ' + ${resType}"/>
+            <p th:text="|с | + ${startDate} + |г. по | + ${endDate} + |г.|"/>
+        </td>
+    </tr>
+    <tr>
+        <th>Зона</th>
+        <th>Количество</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entry : ${dataMap}">
+        <td th:text="${entry.key}">Зона</td>
+        <td th:text="${entry.value}">0</td>
+    </tr>
+    <tr>
+        <td class="total">Итого:</td>
+        <td class="total" th:text="${sum}">0</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
