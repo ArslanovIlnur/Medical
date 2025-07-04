@@ -15,7 +15,7 @@ addBtnEl.addEventListener("click", () => {
         return;
     }
 
-    fetch('http://localhost:8082/api/research/save', {
+    fetch('/research/api/research/save', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -34,7 +34,7 @@ addBtnEl.addEventListener("click", () => {
     })
     .then(data => {
         alert(data);
-        window.location.href = '/research';
+        window.location.href = '/auth/research_list';
     })
     .catch(error => alert('Ошибка: ' + error.message));
 });
@@ -43,8 +43,8 @@ async function getPatients() {
     try {
         const patSearchIdV = patSearchIdInput.value.trim();
         const url = patSearchIdV === ''
-            ? 'http://localhost:8082/api/research/list'
-            : 'http://localhost:8082/api/research/list?patientId=' + encodeURIComponent(patSearchIdV);
+            ? '/research/api/research/list'
+            : '/research/api/research/list?patientId=' + encodeURIComponent(patSearchIdV);
 
         const response = await fetch(url);
         const patients = await response.json();
@@ -54,7 +54,7 @@ async function getPatients() {
         }
 
         const tBody = document.getElementById('patTblBody');
-        tBody.innerHTML = ''; // Очистка таблицы перед заполнением
+        tBody.innerHTML = '';
 
         patients.forEach(patient => {
             const newRow = tBody.insertRow();

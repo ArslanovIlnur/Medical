@@ -3,3 +3,5 @@
 /gateway-service/target/
 /report-service/target/
 /research-service/target/
+
+.bat

@@ -18,3 +18,8 @@ td{
 .total{
     font-weight:bold;border:2px solid black;
 }
+.head{
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}

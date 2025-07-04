@@ -8,11 +8,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.web.filter.ForwardedHeaderFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -23,9 +22,8 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        SavedRequestAwareAuthenticationSuccessHandler successHandler =
-                new SavedRequestAwareAuthenticationSuccessHandler();
-        successHandler.setDefaultTargetUrl("/research_list");
+        GatewayRedirectHandler redirectHandler = new GatewayRedirectHandler();
+        GatewayFailureHandler failureHandler = new GatewayFailureHandler();
 
         http.csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(auth->auth
@@ -34,9 +32,16 @@ public class WebSecurityConfig {
                         .anyRequest().authenticated())
                 .formLogin(login->login
                         .loginPage("/")
-                        .successHandler(successHandler)
+                        .loginProcessingUrl("/login")
+                        .successHandler(redirectHandler)
+                        .failureHandler(failureHandler)
                         .permitAll());
         return http.build();
+    }
+
+    @Bean
+    public ForwardedHeaderFilter forwardedHeaderFilter() {
+        return new ForwardedHeaderFilter();
     }
 
     @Bean

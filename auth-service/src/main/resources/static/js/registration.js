@@ -27,7 +27,7 @@ regBtnEl.addEventListener("click", () => {
     })
     .then(data => {
         alert(data);
-        window.location.href = '/';
+        window.location.href = '/auth/';
     })
     .catch(error => alert('Ошибка: ' + error.message));
 });

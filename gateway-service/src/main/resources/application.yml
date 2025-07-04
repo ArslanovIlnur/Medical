@@ -4,30 +4,52 @@ server:
 spring:
   cloud:
     gateway:
-      server:
-        webflux:
-          routes:
-            - id: auth-service
-              uri: http://localhost:8081
-              predicates:
-                - Path=/auth/**
-              filters:
-                - StripPrefix=1
-            - id: auth-service-css
-              uri: http://localhost:8081
-              predicates:
-                  - Path=/css/**
+      routes:
+        - id: auth-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
 
-            - id: auth-service-js
-              uri: http://localhost:8081
-              predicates:
-                  - Path=/js/**
+        - id: auth-service-css
+          uri: http://localhost:8081
+          predicates:
+            - Path=/css/**
 
-            - id: report-service
-              uri: http://localhost:8082
-              predicates:
-                - Path=/report/**
-            - id: research-service
-              uri: http://localhost:8083
-              predicates:
-                - Path=/research/**
+        - id: auth-service-js
+          uri: http://localhost:8081
+          predicates:
+            - Path=/js/**
+
+        - id: report-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/report/**
+          filters:
+            - StripPrefix=1
+
+        - id: research-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/research/**
+          filters:
+            - StripPrefix=1
+
+        - id: report-service-css
+          uri: http://localhost:8083
+          predicates:
+            - Path=/report/css/**
+          filters:
+            - StripPrefix=1
+
+
+        - id: report-service-js
+          uri: http://localhost:8083
+          predicates:
+            - Path=/report/js/**
+          filters:
+            - StripPrefix=1
+
+      forwarded:
+        enabled: true

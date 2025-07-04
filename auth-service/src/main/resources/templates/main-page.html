@@ -11,10 +11,13 @@
         <a th:href="@{/registration}">Зарегистрироваться</a>
     </div>
 </header>
-<form method="post" th:action="@{/}" class="container">
+<form method="post" th:action="@{/auth/login}" class="container">
     <input name="username" type="text" placeholder="Имя пользователя">
     <input name="password" type="password" placeholder="Пароль">
     <button type="submit">Войти</button>
 </form>
+<div th:if="${param.error}" style="color:red">
+    Неверное имя пользователя или пароль.
+</div>
 </body>
 </html>
